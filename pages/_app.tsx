@@ -1,8 +1,14 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import "../styles/globals.css";
+import '../styles/styles.css'
+import type { AppProps } from "next/app";
+import { CoinContextProvider } from "../contexts/coinsContext";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <CoinContextProvider>
+      <Component {...pageProps} />
+    </CoinContextProvider>
+  );
 }
 
-export default MyApp
+export default MyApp;

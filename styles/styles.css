@@ -1,0 +1,39 @@
+.warper {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.warper a {
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  text-align: center;
+  background-color: blue;
+}
+
+.container .optionBar p{
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.container .optionBar .optionBar__optionContainer{
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+}
+
+.container .optionBar .optionBar__optionContainer a{
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: green;
+  padding: 7px;
+  border-radius: 10%;
+}
+
+.container .optionBar .optionBar__optionContainer a:hover{
+  background-color: skyblue;
+}
