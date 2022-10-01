@@ -1,7 +1,7 @@
-import React from "react";
+import type { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
-function OptionBar() {
+const OptionBar: NextPage = () => {
   const { query } = useRouter();
   return (
     <div className="optionBar">

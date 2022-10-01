@@ -1,21 +1,28 @@
 import React, { createContext, useState } from "react";
-import {DataFromAPI, ContextType} from '../types/index'
+import { ContextType, Coins } from "../types/index";
 
-const CoinContext = createContext<ContextType | null>(null);
+export const CoinContext = createContext<Array<ContextType>>([]);
 interface Props {
-  children: React.ReactChild,
+  children: React.ReactChild;
 }
-export const CoinContextProvider: React.FC<Props> = ({children}) => {
-  const [orderByPrice, setOrderByPrice] = useState<DataFromAPI | null>(null);
-  const [orderByChange, setOrderByChange] = useState<DataFromAPI | null>(null);
-  const [orderByMarketCap, setOrderByMarketCap] = useState<DataFromAPI | null>(null);
+
+export const CoinContextProvider: React.FC<Props> = ({ children }) => {
+  const [orderByPrice, setOrderByPrice] = useState<Coins | null>(null);
+  const [orderByChange, setOrderByChange] = useState<Coins | null>(null);
+  const [orderByMarketCap, setOrderByMarketCap] = useState<Coins | null>(
+    null
+  );
   return (
     <CoinContext.Provider
-      value={{
-        price: [orderByPrice, setOrderByPrice],
-        change: [orderByChange, setOrderByChange],
-        marketcap: [orderByMarketCap, setOrderByMarketCap],
-      }}
+      value={[
+        { orderBy: "price", coins: orderByPrice, setCoins: setOrderByPrice },
+        { orderBy: "change", coins: orderByChange, setCoins: setOrderByChange },
+        {
+          orderBy: "marketCap",
+          coins: orderByMarketCap,
+          setCoins: setOrderByMarketCap,
+        },
+      ]}
     >
       {children}
     </CoinContext.Provider>

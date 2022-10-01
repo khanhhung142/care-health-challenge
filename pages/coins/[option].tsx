@@ -1,16 +1,23 @@
 import type { NextPage, GetServerSideProps } from "next";
-import {useContext, useState } from "react";
-import Link from "next/link";
+import { useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import OptionBar from "../../components/OptionBar";
-import {DataFromAPI, ContextType} from '../../types/index'
+import { DataFromAPI } from "../../types/index";
+import { CoinContext } from "../../contexts/coinsContext";
+import CoinsPanel from "../../components/CoinsPanel";
 const Coins: NextPage<DataFromAPI> = (props: DataFromAPI) => {
   const { query } = useRouter();
-  // const [coins, setCoins] = useState(props.fallback);
-  console.log(props.fallback)
+  const context = useContext(CoinContext);
+  const itemIndex = context.findIndex((item) => item.orderBy === `${query.option}`)
+  useEffect(()=>{
+    if (context[itemIndex].coins === null) {
+      context[itemIndex].setCoins(props.fallback.data)
+    }
+  })
   return (
     <div className="container">
       <OptionBar />
+      <CoinsPanel />
     </div>
   );
 };
